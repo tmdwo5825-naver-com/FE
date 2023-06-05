@@ -2,32 +2,30 @@
 
 import React, { useState } from "react";
 import classes from "./UploadBox.module.css";
-import Geolocation from "./GeoLocation";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
-function UploadBox({ onSubmitSuccess }) {
+function UploadBox({ onSubmitSuccess, markerPosition }) {
     const [enteredText, setEnteredText] = useState("");
-    const [position, setPosition] = useState(null);
-
     function changeTextHandler(event) {
         setEnteredText(event.target.value);
     }
 
-    function handleGeolocationSuccess(pos) {
-        setPosition(pos);
-    }
 
     function handleSubmit(event) {
         event.preventDefault();
         const formdata = new FormData();
         formdata.append("comment", enteredText);
         formdata.append("image", event.target["image"].files[0], "20vt87.jpg");
-        if (position) {
-            formdata.append("lat", position.coords.latitude);
-            formdata.append("lon", position.coords.longitude);
+        if (markerPosition) {
+            formdata.append("lat", markerPosition.lng);
+            formdata.append("lon", markerPosition.lat);
         }
+        console.log("SSol data:");
+        formdata.forEach((value, key) => {
+            console.log(key + ": " + value);
+        });
 
         axios
             .post("http://cbnu-cat-mom.koreacentral.cloudapp.azure.com/content-create", formdata)
@@ -63,7 +61,6 @@ function UploadBox({ onSubmitSuccess }) {
     return (
         <>
             <form className={classes.form} onSubmit={handleSubmit}>
-                <Geolocation onSuccess={handleGeolocationSuccess} />
                 <p>
                     <label htmlFor="name">Upload Cat Image</label>
                     <input type="file" name="image" accept=".jpg,.jpeg,.png"/>

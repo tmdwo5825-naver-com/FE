@@ -5,7 +5,7 @@ import Modal from "./Modal";
 import UploadBox from "./UploadBox";
 import {ToastContainer} from "react-toastify";
 
-function NavigateBar() {
+function NavigateBar({ position }) {
     const navigate = useNavigate();
 
     const to24 = () => {
@@ -21,6 +21,7 @@ function NavigateBar() {
 
     const handleButtonClick = () => {
         setIsOverlayOpen(true);
+        console.log(position);
     };
 
     const handleOverlayClose = () => {
@@ -40,7 +41,7 @@ function NavigateBar() {
             </button>
             {isOverlayOpen && (
                 <Modal onClose={handleOverlayClose}>
-                    <UploadBox onSubmitSuccess={handleOverlayClose} />
+                    <UploadBox onSubmitSuccess={handleOverlayClose} markerPosition={position}/>
                 </Modal>
             )}
             <button className={classes.bottomButton} onClick={to24}>

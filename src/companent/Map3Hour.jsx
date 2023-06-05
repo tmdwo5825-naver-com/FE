@@ -15,6 +15,7 @@ function Map3Hour() {
     const [IsOverlayOpen, SetIsOverlayOpen] = useState(false);
     const [renderCount, setRenderCount] = useState(0);
     const [fetchCount, setFetchCount] = useState(0);
+    const [marker2Position, setMarker2] = useState({ lat: 0, lng: 0 });
 
     const handleMarkerClick = (markerData) => {
         setSelectedMarker(markerData);
@@ -81,6 +82,27 @@ function Map3Hour() {
             fetchedData.forEach((item) => {
                 createMarker(item);
             });
+        });
+        var markerPosition = new kakao.maps.LatLng(36.628113354779614, 127.45698588607);
+        var marker2 = new kakao.maps.Marker({
+            position: markerPosition
+        });
+
+        marker2.setMap(map);
+        marker2.setDraggable(true);
+
+        // marker2의 위치 변경 이벤트에 대한 핸들러를 추가.
+        kakao.maps.event.addListener(marker2, 'dragend', function () {
+            // marker2의 변경된 위치를 가져옵니다.
+            var newPosition = marker2.getPosition();
+
+            // 상태 변수에 위치를 저장합니다.
+            setMarker2({
+                lat: newPosition.La,
+                lng: newPosition.Ma,
+            });
+            console.log(newPosition);
+            console.log(marker2Position); // 수정된 부분
         });
 
         async function fetchCountData() {
@@ -179,7 +201,7 @@ function Map3Hour() {
                 <span className="material-icons">help</span></button>
             {IsOverlayOpen && <Modal onClose={handleOverlayClose}><InfoBox /></Modal>}
             <Map onMarkerClick={handleMarkerClick} />
-            <NavigateBar />
+            <NavigateBar position={marker2Position} />
             {selectedMarker && (
                 <ClearModal onCloseExplainBox={closeExplainBox}>
                     <ExplainBox marker={selectedMarker} />

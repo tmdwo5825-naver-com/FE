@@ -95,6 +95,7 @@ function Map3Hour() {
         kakao.maps.event.addListener(marker2, 'dragend', function () {
             // marker2의 변경된 위치를 가져옵니다.
             var newPosition = marker2.getPosition();
+            marker2.setZIndex(3);
 
             // 상태 변수에 위치를 저장합니다.
             setMarker2({
@@ -141,14 +142,6 @@ function Map3Hour() {
                 fillOpacity: 0.2,
             });
             circle.setMap(map);
-            // //테스트를 위한 더미 데이터
-            // const countData=[
-            //     {id:1,count:1},
-            //     {id:2,count:7},
-            //     {id:3,count:4},
-            //     {id:4,count:5}
-            // ];
-
             //카운트
             const count = countData[index];
             if (count) {

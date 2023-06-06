@@ -32,7 +32,7 @@ function NavigateBar({ position }) {
         <div className={classes.bottomBar}>
             <ToastContainer />
             <button className={classes.bottomButton} onClick={to3}>
-                <span className="material-icons">history</span>
+                <img  src="/3hour.png" style={{ width: "35px", height: "auto" }} />
                 <div>3시간</div>
             </button>
             <button className={classes.bottomButton} onClick={handleButtonClick}>
@@ -45,7 +45,7 @@ function NavigateBar({ position }) {
                 </Modal>
             )}
             <button className={classes.bottomButton} onClick={to24}>
-                <span className="material-icons">today</span>
+                <img  src="/24hour.png" style={{ width: "40px", height: "auto" }} />
                 <div>24시간</div>
             </button>
         </div>

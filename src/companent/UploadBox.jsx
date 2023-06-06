@@ -44,7 +44,7 @@ function UploadBox({ onSubmitSuccess, markerPosition }) {
             .post("http://cbnu-cat-mom.koreacentral.cloudapp.azure.com/content-create", formdata)
             .then((response) => {
                 if (response.data.status_code === 201) {
-                    toast.success("파일 업로드가 성공적으로 되었습니다!");
+                    toast.success("업로드 성공! 새로고침을 해주세요!");
                 } else {
                     toast.error("파일이 업로드가 되지 않았습니다.");
                 }
@@ -90,7 +90,7 @@ function UploadBox({ onSubmitSuccess, markerPosition }) {
                     />
                 </p>
                 <button type="submit" className="image-button" style={buttonStyle}>
-                    <img  src="/pet_button1.png" />
+                    <img  src="/pet_button1.png" style={{ width: "100%", height: "auto" }} />
                 </button>
             </form>
         </>

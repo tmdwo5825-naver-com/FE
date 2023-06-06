@@ -90,7 +90,7 @@ function UploadBox({ onSubmitSuccess, markerPosition }) {
                     />
                 </p>
                 <button type="submit" className="image-button" style={buttonStyle}>
-                    <img  src="/pet_button1.png" style={{ width: "100%", height: "auto" }} />
+                    <img  src="/pet_button1.png" />
                 </button>
             </form>
         </>

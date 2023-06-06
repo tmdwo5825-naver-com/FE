@@ -23,7 +23,7 @@ const IntroPage = () => {
             // navigate 함수를 사용하여 페이지 이동
             navigate('/3hours');
             localStorage.setItem('isFirstVisit', 'false');
-        }, 1700); // 4초 후 메인 페이지로 이동
+        }, 3000); // 4초 후 메인 페이지로 이동
 
         return () => clearTimeout(timer); // 컴포넌트가 unmount되면 타이머를 정리
     }, [navigate]);

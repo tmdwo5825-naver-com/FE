@@ -22,10 +22,13 @@ function UploadBox({ onSubmitSuccess, markerPosition }) {
         const day = String(currentDate.getDate()).padStart(2, "0");
         const hours = String(currentDate.getHours()).padStart(2, "0");
         const minutes = String(currentDate.getMinutes()).padStart(2, "0");
-        const dateString = `${month}-${day} ${hours}:${minutes}`;
 
 
-        formdata.append("date", dateString);
+
+        formdata.append("month", month);
+        formdata.append("day", day);
+        formdata.append("hour", hours);
+        formdata.append("min", minutes);
         formdata.append("comment", enteredText);
         formdata.append("image", event.target["image"].files[0], "20vt87.jpg");
         if (markerPosition) {

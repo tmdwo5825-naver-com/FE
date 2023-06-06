@@ -36,9 +36,11 @@
     color: #ffffff;
     font-family: 'Nyala', sans-serif;
     position: absolute;
-    top: -5%;
+    top: 10%;
+    /*위치 조정하고 싶으면 top 비율 조정*/
     left: 50%;
     margin-bottom: 10px;
+    margin-top: 0px;
     transform: translateX(-50%);
 }
 
@@ -50,7 +52,8 @@
     margin-bottom: 10px;
     font-family: 'Nyala', sans-serif;
     position: absolute;
-    top: 70%;
+    bottom: 10%;
+    /*위치 조정하고 싶으면 bottom 비율 조정*/
     left: 50%;
     transform: translateX(-50%);
 }

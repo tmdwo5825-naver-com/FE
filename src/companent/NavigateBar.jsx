@@ -33,11 +33,11 @@ function NavigateBar({ position }) {
             <ToastContainer />
             <button className={classes.bottomButton} onClick={to3}>
                 <img  src="/3hour.png" style={{ width: "35px", height: "auto" }} />
-                <div>3시간</div>
+                <div style={{ color: "black" }}>Recent</div>
             </button>
             <button className={classes.bottomButton} onClick={handleButtonClick}>
                 <span className="material-icons">add</span>
-                <div>사진 추가</div>
+                <div style={{ color: "black" }}>upload</div>
             </button>
             {isOverlayOpen && (
                 <Modal onClose={handleOverlayClose}>
@@ -46,7 +46,7 @@ function NavigateBar({ position }) {
             )}
             <button className={classes.bottomButton} onClick={to24}>
                 <img  src="/24hour.png" style={{ width: "40px", height: "auto" }} />
-                <div>24시간</div>
+                <div style={{ color: "black" }}>Today</div>
             </button>
         </div>
     );

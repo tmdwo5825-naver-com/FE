@@ -13,7 +13,7 @@ import InfoBox from "./InfoBox";
 function Map2() {
     const [selectedMarker, setSelectedMarker] = useState(null);
     const [IsOverlayOpen, SetIsOverlayOpen] = useState(false);
-    const [marker2Position, setMarker2] = useState({ lat: 0, lng: 0 });
+    const [marker2Position, setMarker2] = useState({ lat: 127.45698538088607, lng: 36.628113354779614 });
 
     const handleMarkerClick = (markerData) => {
         setSelectedMarker(markerData);
@@ -88,6 +88,7 @@ function Map2() {
 
         marker2.setMap(map);
         marker2.setDraggable(true);
+        marker2.setZIndex(99999);
 
         // marker2의 위치 변경 이벤트에 대한 핸들러를 추가.
         kakao.maps.event.addListener(marker2, 'dragend', function () {

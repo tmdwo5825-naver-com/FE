@@ -13,7 +13,10 @@ import InfoBox from "./InfoBox";
 function Map2() {
     const [selectedMarker, setSelectedMarker] = useState(null);
     const [IsOverlayOpen, SetIsOverlayOpen] = useState(false);
-    const [marker2Position, setMarker2] = useState({ lat: 127.45698538088607, lng: 36.628113354779614 });
+    const [marker2Position, setMarker2] = useState({
+        lat: 127.45698538088607,
+        lng: 36.628113354779614,
+    });
 
     const handleMarkerClick = (markerData) => {
         setSelectedMarker(markerData);
@@ -46,7 +49,10 @@ function Map2() {
 
         // 서버에서 JSON 데이터를 가져올 함수
         async function fetchData() {
-            const response = await fetch("http://cbnu-cat-mom.koreacentral.cloudapp.azure.com/today"); // FastAPI의 엔드포인트를 입력해야 합니다.
+            const response = await fetch("http://cbnu-cat-mom.koreacentral.cloudapp.azure.com/today", {
+                method: "GET",
+                mode: "cors", // CORS 모드 설정
+            });
             const fetchedData = await response.json();
             console.log("Fetched data:", fetchedData);
             return fetchedData.data; // JSON 객체 배열을 반환하도록 수정
@@ -83,7 +89,7 @@ function Map2() {
 
         var markerPosition = new kakao.maps.LatLng(36.628113354779614, 127.45698588607);
         var marker2 = new kakao.maps.Marker({
-            position: markerPosition
+            position: markerPosition,
         });
 
         marker2.setMap(map);
@@ -91,7 +97,7 @@ function Map2() {
         marker2.setZIndex(99999);
 
         // marker2의 위치 변경 이벤트에 대한 핸들러를 추가.
-        kakao.maps.event.addListener(marker2, 'dragend', function () {
+        kakao.maps.event.addListener(marker2, "dragend", function () {
             // marker2의 변경된 위치를 가져옵니다.
             var newPosition = marker2.getPosition();
 
@@ -104,7 +110,6 @@ function Map2() {
             console.log(marker2Position); // 수정된 부분
         });
 
-
         function panTo() {
             // 이동할 위도 경도 위치를 생성합니다
             var moveLatLon = new kakao.maps.LatLng(36.628113354779614, 127.45698538088607);
@@ -113,8 +118,6 @@ function Map2() {
             // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
             map.panTo(moveLatLon);
         }
-
-
 
         const button = document.createElement("button");
         button.addEventListener("click", panTo);
@@ -133,8 +136,13 @@ function Map2() {
     return (
         <>
             <button className={classes.infoButton} onClick={handleButtonInfoClick}>
-                <span className="material-icons">help</span></button>
-                {IsOverlayOpen && <Modal onClose={handleOverlayClose}><InfoBox /></Modal>}
+                <span className="material-icons">help</span>
+            </button>
+            {IsOverlayOpen && (
+                <Modal onClose={handleOverlayClose}>
+                    <InfoBox />
+                </Modal>
+            )}
             <Map onMarkerClick={handleMarkerClick} />
             <NavigateBar position={marker2Position} />
             {selectedMarker && (

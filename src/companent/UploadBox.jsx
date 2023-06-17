@@ -60,7 +60,6 @@ function UploadBox({ onSubmitSuccess, markerPosition }) {
     const buttonStyle = {
         position: "absolute",
         top: "77%",
-        right: "47%",
         width: "40px",
         height: "40px",
         border: "none",
@@ -69,6 +68,7 @@ function UploadBox({ onSubmitSuccess, markerPosition }) {
         lineHeight: "1",
         textAlign: "center",
         cursor: "pointer",
+        marginLeft : "38%"
     };
 
     return (
@@ -90,7 +90,7 @@ function UploadBox({ onSubmitSuccess, markerPosition }) {
                     />
                 </p>
                 <button type="submit" className="image-button" style={buttonStyle}>
-                    <img  src="/pet_button1.png" />
+                    <img  src="/pet_button1.png" style={{ width: "100%", height: "auto" }} />
                 </button>
             </form>
         </>
@@ -98,3 +98,4 @@ function UploadBox({ onSubmitSuccess, markerPosition }) {
 }
 
 export default UploadBox;
+
